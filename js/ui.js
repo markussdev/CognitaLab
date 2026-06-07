@@ -63,6 +63,24 @@ function setupDock() {
         return;
       }
 
+      if (panel === 'docs') {
+        item.classList.add('active');
+        wp.style.display = 'none';
+        ensureDocsState();
+        renderDocsPage();
+        showDocsPage();
+        return;
+      }
+
+      if (panel === 'inspirations') {
+        item.classList.add('active');
+        wp.style.display = 'none';
+        ensureInspirationsState();
+        renderInspirationsPage();
+        showInspirationsPage();
+        return;
+      }
+
       if (wp.style.display !== 'none' && activeDock === item) {
         wp.style.display = 'none';
         return;
@@ -573,6 +591,8 @@ function renderDrawerConnection(id) {
 
 // ═══════════════════════════ HOME / CANVAS SWITCH ════════════════════════════
 function showHome() {
+  if (typeof hideDocsPage === 'function') hideDocsPage();
+  if (typeof hideInspirationsPage === 'function') hideInspirationsPage();
   document.getElementById('homeScreen').style.display = 'flex';
   document.getElementById('canvasContainer').style.display = 'none';
   document.getElementById('minimap').style.display = 'none';
@@ -580,6 +600,8 @@ function showHome() {
 }
 
 function showCanvas() {
+  if (typeof hideDocsPage === 'function') hideDocsPage();
+  if (typeof hideInspirationsPage === 'function') hideInspirationsPage();
   document.getElementById('homeScreen').style.display = 'none';
   document.getElementById('canvasContainer').style.display = 'block';
   if (state.showMinimap) document.getElementById('minimap').style.display = 'block';

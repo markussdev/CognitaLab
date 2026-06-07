@@ -92,6 +92,14 @@
         <svg viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M7 7h6M7 10h4M7 13h6"/></svg>
         <span>Canvas</span>
       </button>
+      <button class="dock-item" data-panel="docs" title="Documentação">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="12" height="16" rx="2"/><line x1="7" y1="7" x2="13" y2="7"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="7" y1="13" x2="11" y2="13"/></svg>
+        <span>Docs</span>
+      </button>
+      <button class="dock-item" data-panel="inspirations" title="Inspirações">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2a5 5 0 0 1 3.5 8.6V13H6.5v-2.4A5 5 0 0 1 10 2z"/><line x1="7" y1="15" x2="13" y2="15"/><line x1="8.5" y1="17.5" x2="11.5" y2="17.5"/></svg>
+        <span>Ideias</span>
+      </button>
       <button class="dock-item" data-panel="code" title="Gerar por código">
         <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="7,5 3,10 7,15"/><polyline points="13,5 17,10 13,15"/></svg>
         <span>Código</span>
@@ -197,6 +205,56 @@
       <div class="connect-hint" id="connectHint" style="display:none">
         Clique em outro bloco para conectar &nbsp;·&nbsp; <kbd>Esc</kbd> para cancelar
       </div>
+
+      <!-- Inspirations page -->
+      <div class="inspirations-page" id="inspirationsPage" style="display:none">
+        <div class="insp-shell">
+          <aside class="insp-sidebar">
+            <div class="insp-sidebar-header">
+              <h2>Inspirações</h2>
+              <p>Salve referências, ideias e decisões para fortalecer o projeto.</p>
+            </div>
+            <div class="insp-stats" id="inspStats"></div>
+            <div class="insp-filters" id="inspFilters"></div>
+          </aside>
+          <section class="insp-main">
+            <div class="insp-main-header">
+              <div>
+                <h1>Banco de ideias</h1>
+                <p>Organize referências usadas na construção da CognitaMente.</p>
+              </div>
+              <div class="insp-header-actions">
+                <button class="btn-drawer" id="exportInspTxtBtn">Exportar .txt</button>
+                <button class="btn-drawer" id="exportInspMdBtn">Exportar .md</button>
+                <button class="btn-drawer primary" id="newInspirationBtn">+ Nova</button>
+              </div>
+            </div>
+            <div class="insp-toolbar">
+              <input type="text" id="inspSearch" class="insp-search" placeholder="Buscar por título, tags ou resumo..." />
+            </div>
+            <div class="insp-grid" id="inspGrid"></div>
+          </section>
+          <aside class="insp-editor" id="inspEditor"></aside>
+        </div>
+      </div>
+
+      <!-- Docs page -->
+      <div class="docs-page" id="docsPage" style="display:none">
+        <div class="docs-page-shell">
+          <aside class="docs-sidebar">
+            <div class="docs-sidebar-header">
+              <h2>Documentação</h2>
+              <p>Monte os blocos do trabalho escrito da CognitaMente.</p>
+            </div>
+            <div class="docs-progress-card" id="docsProgressCard"></div>
+            <div class="docs-section-list" id="docsSectionList"></div>
+          </aside>
+          <section class="docs-main">
+            <div class="docs-main-header" id="docsMainHeader"></div>
+            <div class="docs-main-editor" id="docsMainEditor"></div>
+          </section>
+        </div>
+      </div>
     </main>
 
     <!-- ═══ DRAWER DIREITO ═══ -->
@@ -264,6 +322,8 @@
   <script src="js/templates.js"></script>
   <script src="js/render.js"></script>
   <script src="js/canvas.js"></script>
+  <script src="js/docs.js"></script>
+  <script src="js/inspirations.js"></script>
   <script src="js/ui.js"></script>
   <script src="js/blocks.js"></script>
   <script src="js/export.js"></script>

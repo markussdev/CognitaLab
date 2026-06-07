@@ -17,6 +17,10 @@ function loadFromLocalStorage() {
         state.panY = data.panY || 0;
         if (data.diagramName) document.getElementById('diagramName').value = data.diagramName;
         if (data.notes) state.notes = data.notes;
+        if (data.docs) state.docs = data.docs;
+        if (typeof ensureDocsState === 'function') ensureDocsState();
+        if (data.inspirations) state.inspirations = data.inspirations;
+        if (typeof ensureInspirationsState === 'function') ensureInspirationsState();
         showCanvas();
         renderAll();
         applyTransform();
@@ -25,6 +29,8 @@ function loadFromLocalStorage() {
       }
     }
   } catch (e) {}
+  if (typeof ensureDocsState === 'function') ensureDocsState();
+  if (typeof ensureInspirationsState === 'function') ensureInspirationsState();
   // Show home by default
   showHome();
 }
@@ -83,6 +89,8 @@ function saveToLocalStorage(showStatus = true) {
       panY: state.panY,
       diagramName: document.getElementById('diagramName').value,
       notes: state.notes,
+      docs: state.docs,
+      inspirations: state.inspirations,
       snapToGrid: state.snapToGrid,
       showMinimap: state.showMinimap,
     };

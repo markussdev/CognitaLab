@@ -30,6 +30,8 @@ const state = {
   isPanning: false,
   panStartX: 0,
   panStartY: 0,
+  docs: null,
+  inspirations: null,
 };
 
 // ═══════════════════════════ HISTÓRICO UNDO/REDO ══════════════════════════════

@@ -12,6 +12,7 @@ function setupCanvasEvents() {
   area.addEventListener('wheel', onCanvasWheel, { passive: false });
 
   area.addEventListener('click', (e) => {
+    if (e.target.closest('#docsPage, #inspirationsPage')) return;
     if (_boxSelectWasActive) { _boxSelectWasActive = false; return; }
     if (e.target === area || e.target.id === 'canvasContainer' || e.target.id === 'blocksLayer') {
       if (state.connectingFrom) { cancelConnect(); return; }
@@ -87,6 +88,7 @@ let _panning = false;
 let _panStart = { x: 0, y: 0, px: 0, py: 0 };
 
 function onCanvasMouseDown(e) {
+  if (e.target.closest('#docsPage, #inspirationsPage')) return;
   const onEmpty = !e.target.closest('.block') && !state.connectingFrom;
   // Middle mouse, Alt+click, or plain left-click on empty area → pan
   if (e.button === 1 || (e.button === 0 && e.altKey) || (e.button === 0 && onEmpty && !e.shiftKey)) {
@@ -101,6 +103,7 @@ function onCanvasMouseDown(e) {
 }
 
 function onCanvasMouseMove(e) {
+  if (e.target.closest('#docsPage, #inspirationsPage')) return;
   if (_panning) {
     state.panX = _panStart.px + (e.clientX - _panStart.x);
     state.panY = _panStart.py + (e.clientY - _panStart.y);
@@ -123,7 +126,7 @@ function onCanvasMouseUp() {
 function onCanvasWheel(e) {
   // Não sequestra scroll de painéis, home, inputs ou modais.
   if (document.body.classList.contains('home-mode') ||
-      e.target.closest('#homeScreen, .wp-body, .drawer, .modal-box, textarea, input, select')) return;
+      e.target.closest('#homeScreen, #docsPage, #inspirationsPage, .wp-body, .drawer, .modal-box, textarea, input, select')) return;
   e.preventDefault();
   if (e.ctrlKey) {
     // Ctrl+scroll → zoom centrado no cursor
